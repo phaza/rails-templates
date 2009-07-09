@@ -35,12 +35,18 @@ if yes?('Authorization with Authlogic?')
   git :add => ".", :commit => "-m 'Add authlogic plugin'"
 end
 
-if yes?('I18n?')
+if yes?('Planning on translating the application?')
   plugin 'translate_routes', :git => 'git://github.com/raul/translate_routes.git'
   plugin 'i18n_label', :git => 'git://github.com/iain/i18n_label.git'
+  git :add => '.', :commit => "-m 'Add i18n helper plugins'"
 end
 
-if yes?('Use attachments?')
+if yes?('Are you going to need background processes/daemons?')
+  plugin 'daemon_generator', :git => 'git://github.com/dougal/daemon_generator.git'
+  git :add => '.', :commit => "-m 'Add daemon_generator plugin'"
+end
+
+if yes?('Going to use attachments?')
   if yes?('Images only? (Paperclip)')
     plugin 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
     git :add => ".", :commit => "-m 'Add paperclip plugin'"
