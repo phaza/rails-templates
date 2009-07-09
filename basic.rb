@@ -35,6 +35,11 @@ if yes?('Authorization with Authlogic?')
   git :add => ".", :commit => "-m 'Add authlogic plugin'"
 end
 
+if yes?('I18n?')
+  plugin 'translate_routes', :git => 'git://github.com/raul/translate_routes.git'
+  plugin 'i18n_label', :git => 'git://github.com/iain/i18n_label.git'
+end
+
 if yes?('Use attachments?')
   if yes?('Images only? (Paperclip)')
     plugin 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
