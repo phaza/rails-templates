@@ -283,7 +283,10 @@ if yes?('Capistrano integration?')
   folder = "config/deploy"
   Dir.mkdir(folder) unless File.exists?(folder)
   File.open("#{folder}/database.rb", 'w') {|f| f.write(db_script)}
-  File.open("#{folder}/database.yml.erb", 'w') {|f| f.write(db_template)} 
+  File.open("#{folder}/database.yml.erb", 'w') {|f| f.write(db_template)}
+  File.open("#{folder}.rb", 'a') do |f|
+    f.write("\nrequire File.expand_path(File.dirname(__FILE__) + '/deploy/database.rb')'")
+  end
   
   git :add => '.'
   git :commit => "-m 'Capistrano integration'"
