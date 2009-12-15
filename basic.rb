@@ -74,7 +74,8 @@ if yes?('Going to use attachments?')
     git :commit => "-m 'Add paperclip plugin'"
   else
     plugin 'attachment_fu', :git => 'git://github.com/technoweenie/attachment_fu.git'  
-    git :add => ".", :commit => "-m 'Add attachment_fu plugin'"
+    git :add => "."
+    git :commit => "-m 'Add attachment_fu plugin'"
   end
 end
 
@@ -84,6 +85,14 @@ if yes?('Haml?')
   run "haml --rails ."
   git :add => '.'
   git :commit => "-m 'Add haml plugin'"
+end
+
+if yes?('LESS css?')
+  gem 'less'
+  run "rake gems:install"
+  plugin 'more', :git => 'git://github.com/cloudhead/more.git'
+  git :add => '.'
+  git :commit => "-m 'Add less for rails (more) plugin'"
 end
 
 if yes?('Capistrano integration?')
