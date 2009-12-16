@@ -62,7 +62,7 @@ if yes?('Going to working with date and time and need such validations?')
 end
 
 if yes?('Need pagination?')
-  plguin 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
+  plugin 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
   git :add => '.'
   git :commit => "-m 'Add will_paginate plugin'"
 end
