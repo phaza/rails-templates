@@ -17,7 +17,7 @@ run "rm -f public/javascripts/*"
 
 run "touch tmp/.gitignore log/.gitignore vendor/.gitignore"  
 
-run "curl --progress-bar -L http://jqueryjs.googlecode.com/files/jquery-1.3.2.js > public/javascripts/jquery-1.3.2.js"
+run "curl --progress-bar -L http://jqueryjs.googlecode.com/files/jquery-1.4.1.js > public/javascripts/jquery-1.4.1.js"
 
 git :init
 git :add => "."
