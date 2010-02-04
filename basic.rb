@@ -94,14 +94,13 @@ else
   plugin 'html_output', :git => 'git://github.com/jonleighton/html_output.git'
   git :add => "."
   git :commit => "-m 'Add html output plugin'"
-end
-
-if yes?('LESS css?')
-  gem 'less'
-  run "rake gems:install"
-  plugin 'more', :git => 'git://github.com/cloudhead/more.git'
-  git :add => '.'
-  git :commit => "-m 'Add less for rails (more) plugin'"
+  if yes?('LESS css?')
+    gem 'less'
+    run "rake gems:install"
+    plugin 'more', :git => 'git://github.com/cloudhead/more.git'
+    git :add => '.'
+    git :commit => "-m 'Add less for rails (more) plugin'"
+  end
 end
 
 if yes?('Capistrano integration?')
