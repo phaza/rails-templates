@@ -7,52 +7,55 @@
 
 # Snatched from: http://github.com/lgs/rails-templates
 
-require 'etc'
+if ask?('using mysql for local development?')
 
-dbname   = ask("\nCreate a new MySQL DB named :")
-mysqlusr = ask("\nwith user :")
-passwd   = ask("\nand password :")
+  require 'etc'
 
-mysqlusr = Etc.getlogin if mysqlusr.blank?
+  dbname   = ask("\nCreate a new MySQL DB named :")
+  mysqlusr = ask("\nwith user :")
+  passwd   = ask("\nand password :")
 
-p mysqlusr.blank?
+  mysqlusr = Etc.getlogin if mysqlusr.blank?
 
-file 'config/database.yml', <<-YAML
-development:
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
-  database: #{dbname}
-  pool: 5
-  username: #{mysqlusr}
-  password: #{passwd}
-  host: localhost
-test:
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
-  database: #{dbname}_test
-  pool: 5
-  username: #{mysqlusr}
-  password: #{passwd}
-  host: localhost
-production:
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
-  database: #{dbname}
-  pool: 5
-  username: #{mysqlusr}
-  password: #{passwd}
-  host: localhost
-YAML
+  p mysqlusr.blank?
 
-# Run the migration
-if yes?("\nCreate and migrate databases now?")
-  # run "mysqladmin -u #{mysqlusr} create #{dbname}" -p #{passwd}
-  # run "mysqladmin -u #{mysqlusr} create #{dbname}_test" -p #{passwd}
-  rake("db:create:all")
-  rake("db:migrate")
-  git :add => '.'
-  git :commit => "-m 'Migrate database'"
+  file 'config/database.yml', <<-YAML
+  development:
+    adapter: mysql
+    encoding: utf8
+    reconnect: false
+    database: #{dbname}
+    pool: 5
+    username: #{mysqlusr}
+    password: #{passwd}
+    host: localhost
+  test:
+    adapter: mysql
+    encoding: utf8
+    reconnect: false
+    database: #{dbname}_test
+    pool: 5
+    username: #{mysqlusr}
+    password: #{passwd}
+    host: localhost
+  production:
+    adapter: mysql
+    encoding: utf8
+    reconnect: false
+    database: #{dbname}
+    pool: 5
+    username: #{mysqlusr}
+    password: #{passwd}
+    host: localhost
+  YAML
+
+  # Run the migration
+  if yes?("\nCreate and migrate databases now?")
+    # run "mysqladmin -u #{mysqlusr} create #{dbname}" -p #{passwd}
+    # run "mysqladmin -u #{mysqlusr} create #{dbname}_test" -p #{passwd}
+    rake("db:create:all")
+    rake("db:migrate")
+    git :add => '.'
+    git :commit => "-m 'Migrate database'"
+  end
 end
