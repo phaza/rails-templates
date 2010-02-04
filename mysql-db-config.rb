@@ -53,4 +53,6 @@ if yes?("\nCreate and migrate databases now?")
   # run "mysqladmin -u #{mysqlusr} create #{dbname}_test" -p #{passwd}
   rake("db:create:all")
   rake("db:migrate")
+  git :add => '.'
+  git :commit => "-m 'Migrate database'"
 end
