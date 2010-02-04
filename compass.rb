@@ -18,4 +18,6 @@ if yes?('using compass css authoring tool?')
     f.write(lines)
   end
   
+  git :add => "."
+  git :commit => "-m 'Add compass with fancy buttons and baseline'"  
 end
