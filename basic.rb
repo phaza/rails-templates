@@ -32,10 +32,19 @@ plugin "pretty_flash", :git => 'git://github.com/rpheath/pretty_flash.git'
 git :add => '.'
 git :commit => "-m 'Add pretty flash plgin'"
 
-if yes?('Authorization with Authlogic?')
-  plugin 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
-  git :add => "."
-  git :commit => "-m 'Add authlogic plugin'"
+if yes?('Authorization?')
+  if yes?('with Authlogic?')
+    plugin 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
+    git :add => "."
+    git :commit => "-m 'Add authlogic plugin'"
+  elsif yes?('with devise?')
+    gem 'warden'
+    gem 'devise'
+    run "rake gems:install"
+    generate :devise_install
+    git :add => "."
+    git :commit => "-m 'Add devise authorization'"    
+  end
 end
 
 if yes?('Planning on translating the application?')
