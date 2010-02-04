@@ -28,10 +28,6 @@ rake "asset:packager:create_yml"
 git :add => "."
 git :commit => "-m 'Add asset_packager plugin'"
 
-plugin 'html_output', :git => 'git://github.com/jonleighton/html_output.git'
-git :add => "."
-git :commit => "-m 'Add html output plugin'"
-
 plugin "pretty_flash", :git => 'git://github.com/rpheath/pretty_flash.git'
 git :add => '.'
 git :commit => "-m 'Add pretty flash plgin'"
@@ -85,6 +81,10 @@ if yes?('Haml?')
   run "haml --rails ."
   git :add => '.'
   git :commit => "-m 'Add haml plugin'"
+else
+  plugin 'html_output', :git => 'git://github.com/jonleighton/html_output.git'
+  git :add => "."
+  git :commit => "-m 'Add html output plugin'"
 end
 
 if yes?('LESS css?')
