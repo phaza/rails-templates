@@ -46,9 +46,10 @@ if yes?('Planning on translating the application?')
 end
 
 if yes?('Are you going to need background processes/daemons?')
-  plugin 'daemon_generator', :git => 'git://github.com/dougal/daemon_generator.git'
+  plugin 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
+  generate :delayed_job
   git :add => '.'
-  git :commit => "-m 'Add daemon_generator plugin'"
+  git :commit => "-m 'Add delayed_job plugin'"
 end
 
 if yes?('Going to working with date and time and need such validations?')
