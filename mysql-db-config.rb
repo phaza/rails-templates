@@ -7,9 +7,15 @@
 
 # Snatched from: http://github.com/lgs/rails-templates
 
+require 'etc'
+
 dbname   = ask("\nCreate a new MySQL DB named :")
 mysqlusr = ask("\nwith user :")
 passwd   = ask("\nand password :")
+
+mysqlusr = Etc.getlogin if mysqlusr.blank?
+
+p mysqlusr.blank?
 
 file 'config/database.yml', <<-YAML
 development:
