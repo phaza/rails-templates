@@ -7,7 +7,7 @@
 
 # Snatched from: http://github.com/lgs/rails-templates
 
-if ask?('using mysql for local development?')
+if yes?('using mysql for local development?')
 
   require 'etc'
 
