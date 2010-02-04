@@ -3,6 +3,9 @@ if yes?('using compass css authoring tool?')
   gem 'compass-baseline', :lib => 'baseline'
   gem 'fancy-buttons'
   rake 'gems:install'
+  
+  require 'compass'
+  
   run 'compass --rails -r compass-colors -r fancy-buttons -f fancy-buttons . --css-dir=public/stylesheets/compiled --sass-dir=app/stylesheets'
   
   File.open("#{RAILS_ROOT}/config/compass.rb", 'r+') do |f|
