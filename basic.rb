@@ -49,9 +49,8 @@ end
 
 if yes?('Planning on translating the application?')
   plugin 'translate_routes', :git => 'git://github.com/raul/translate_routes.git'
-  plugin 'i18n_label', :git => 'git://github.com/iain/i18n_label.git'
   git :add => '.'
-  git :commit => "-m 'Add i18n helper plugins'"
+  git :commit => "-m 'Add i18n helper plugin'"
 end
 
 if yes?('Are you going to need background processes/daemons?')
